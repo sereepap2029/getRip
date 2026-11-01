@@ -1,6 +1,6 @@
 # ADR 0001: C#, Unity, VRM, and ASP.NET Core Foundation
 
-- **Status:** Accepted; the AI integration boundary is amended by [ADR 0002](0002-provider-neutral-ai-gateway.md)
+- **Status:** Accepted; amended by [ADR 0002](0002-provider-neutral-ai-gateway.md) and [ADR 0004](0004-polyglot-services.md)
 - **Date:** 2026-11-02
 
 ## Context

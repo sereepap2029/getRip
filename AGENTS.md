@@ -18,14 +18,16 @@ These rules apply to code written by people or AI assistants in this repository.
 - `GetRip.Api` is the composition root and may reference Application and Infrastructure.
 - The Unity client communicates with the API through contracts; it does not reference service projects.
 - The companion service calls only the provider-neutral AI Gateway contract; it never references OpenAI or another provider SDK.
-- Each AI Gateway provider module implements `ILanguageModelProvider` and contains all vendor-specific translation.
+- Each AI Gateway provider module implements the typed language-model provider protocol and contains all vendor-specific translation.
 - The companion service calls only the provider-neutral Speech Gateway contracts for transcription and synthesis.
-- Speech provider modules implement `ISpeechToTextProvider` or `ITextToSpeechProvider`; a provider may implement both.
+- Speech provider modules implement the typed STT or TTS provider protocols; a provider may implement both.
 - Unity components should not contain workout rules, prompt construction, persistence, or direct LLM calls.
 
 ## Coding Rules
 
-- Use C# nullable reference types.
+- Use C# nullable reference types in Unity and the companion service.
+- Use type-annotated Python with strict static analysis in the AI and Speech Gateways.
+- Do not share source packages across C# and Python boundaries; share only versioned contracts and generated clients when useful.
 - Prefer dependency injection through constructors in service code.
 - Keep Unity `MonoBehaviour` classes thin; delegate work to plain C# classes where practical.
 - Add tests for domain rules and application use cases.

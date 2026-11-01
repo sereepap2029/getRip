@@ -16,6 +16,19 @@ memory/private/
 *.userprefs
 .vs/
 
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+*.egg-info/
+
 # Unity generated state
 [Ll]ibrary/
 [Tt]emp/

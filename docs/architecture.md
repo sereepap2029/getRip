@@ -25,7 +25,7 @@ ASP.NET Core Companion API  ◄── reads ── character/, memory/, skills/
                                                └── TTS provider module
 ```
 
-The companion begins as a **modular monolith**, while LLM and speech-provider access use separate, intentionally narrow services. This creates stable external-provider boundaries without turning every application module into a microservice.
+The companion begins as a **C# modular monolith**, while LLM and speech-provider access use separate, intentionally narrow Python services. This creates stable external-provider boundaries without turning every application module into a microservice.
 
 ## Responsibilities
 
@@ -85,9 +85,9 @@ The first module is OpenAI. Later modules can support other hosted APIs or local
 
 Internally, the gateway is split into:
 
-- `GetRip.AiGateway.Abstractions` — normalized request/event types and `ILanguageModelProvider`.
-- `GetRip.AiGateway.Api` — stable network endpoints, routing, configuration, and dependency wiring.
-- `Providers/GetRip.AiGateway.OpenAI` — OpenAI-specific SDK and translation code.
+- `core/` — normalized request/event types and the language-model provider protocol.
+- `api/` — FastAPI endpoints, routing, configuration, and dependency wiring.
+- `providers/openai/` — OpenAI-specific SDK and translation code.
 
 Each future provider is another module under `Providers/`; it must pass the same contract tests.
 
@@ -104,9 +104,9 @@ The gateway owns speech-provider SDKs, voice identifiers, audio-format translati
 
 Internally, the gateway is split into:
 
-- `GetRip.SpeechGateway.Abstractions` — normalized audio, transcript, synthesis, timing, and provider interfaces.
-- `GetRip.SpeechGateway.Api` — stable endpoints, capability routing, configuration, and dependency wiring.
-- `Providers/` — replaceable STT and TTS adapters.
+- `core/` — normalized audio, transcript, synthesis, timing, and provider protocols.
+- `api/` — FastAPI endpoints, capability routing, configuration, and dependency wiring.
+- `providers/` — replaceable STT and TTS adapters.
 
 Use semantic aliases such as `transcription.default` and `waifu.voice.default`. The companion must not depend on provider voice IDs.
 

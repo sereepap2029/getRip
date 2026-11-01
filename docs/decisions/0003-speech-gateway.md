@@ -27,7 +27,7 @@ audio → STT → transcript → companion/LLM → response text → TTS → aud
 
 The Speech Gateway selects providers using semantic capability aliases such as `transcription.default` and `waifu.voice.default`. Provider-specific model and voice IDs remain in gateway configuration.
 
-STT modules implement `ISpeechToTextProvider`. TTS modules implement `ITextToSpeechProvider`. One provider package may implement both interfaces.
+STT modules implement the typed STT provider protocol. TTS modules implement the typed TTS provider protocol. One provider package may implement both protocols.
 
 ## Contract Principles
 

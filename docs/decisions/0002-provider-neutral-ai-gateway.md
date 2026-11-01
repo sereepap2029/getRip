@@ -13,7 +13,7 @@ Create a separately deployable AI Gateway with one versioned, provider-neutral s
 
 The companion requests a capability alias such as `companion.default`. Gateway configuration maps that alias to a provider and model. The companion never sends a provider name or vendor model ID during normal operation.
 
-Each provider is an internal gateway module implementing `ILanguageModelProvider`. The gateway normalizes requests, streamed events, errors, completion status, and token usage.
+Each provider is an internal gateway module implementing the typed language-model provider protocol. The gateway normalizes requests, streamed events, errors, completion status, and token usage.
 
 The gateway owns all provider SDKs and credentials. The companion owns prompts, personality, selected memory, workout behavior, and interpretation of the generated reply.
 
